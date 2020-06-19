@@ -10,12 +10,12 @@ import 'package:html/parser.dart' as htmlParser;
 /// Widgets are rendered with [WidgetsFactory]. See documentation of this class
 /// for more information about rendering rules and ways to override default
 /// behaviour.
-class Html extends StatefulWidget {
-  /// Initial HTML String. Only one of data and initialNodes
+class HtmlRenderer extends StatefulWidget {
+  /// Initial HTML String. Only one of initialHtmlString and initialNodes
   /// can be used
-  final String data;
+  final String initialHtmlString;
 
-  ///Initial list of  nodes  Only one of data and initialNodes
+  ///Initial list of  nodes  Only one of initialHtmlString and initialNodes
   /// can be used
   final NodeList initialNodes;
 
@@ -25,20 +25,19 @@ class Html extends StatefulWidget {
   /// Optional handler of <a> clicks
   final LinkHandler linkHandler;
 
-  Html({
-    this.data,
-    this.initialNodes,
-    this.keepAlive = false,
-    this.linkHandler,
-  });
+  HtmlRenderer(
+      {this.initialHtmlString,
+      this.initialNodes,
+      this.keepAlive = false,
+      this.linkHandler});
 
   @override
   HtmlRendererState createState() => HtmlRendererState();
 }
 
 /// State of [HtmlRenderer] widget
-class HtmlRendererState extends State<Html>
-    with AutomaticKeepAliveClientMixin<Html> {
+class HtmlRendererState extends State<HtmlRenderer>
+    with AutomaticKeepAliveClientMixin<HtmlRenderer> {
   /// Current HTML tree
   NodeList _htmlTree;
 
@@ -52,10 +51,10 @@ class HtmlRendererState extends State<Html>
   void initState() {
     super.initState();
 
-    assert((widget.initialNodes != null) != (widget.data != null));
+    assert((widget.initialNodes != null) != (widget.initialHtmlString != null));
     _widgetsFactory = WidgetsFactory();
-    if (widget.data != null) {
-      _htmlTree = htmlParser.parse(widget.data).nodes;
+    if (widget.initialHtmlString != null) {
+      _htmlTree = htmlParser.parse(widget.initialHtmlString).nodes;
     } else {
       _htmlTree = widget.initialNodes;
     }
