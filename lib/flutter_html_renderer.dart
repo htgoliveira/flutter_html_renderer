@@ -10,12 +10,12 @@ import 'package:html/parser.dart' as htmlParser;
 /// Widgets are rendered with [WidgetsFactory]. See documentation of this class
 /// for more information about rendering rules and ways to override default
 /// behaviour.
-class HtmlRenderer extends StatefulWidget {
-  /// Initial HTML String. Only one of initialHtmlString and initialNodes
+class Html extends StatefulWidget {
+  /// Initial HTML String. Only one of data and initialNodes
   /// can be used
-  final String initialHtmlString;
+  final String data;
 
-  ///Initial list of  nodes  Only one of initialHtmlString and initialNodes
+  ///Initial list of  nodes  Only one of data and initialNodes
   /// can be used
   final NodeList initialNodes;
 
@@ -25,19 +25,20 @@ class HtmlRenderer extends StatefulWidget {
   /// Optional handler of <a> clicks
   final LinkHandler linkHandler;
 
-  HtmlRenderer(
-      {this.initialHtmlString,
-      this.initialNodes,
-        this.keepAlive = false,
-      this.linkHandler});
+  Html({
+    this.data,
+    this.initialNodes,
+    this.keepAlive = false,
+    this.linkHandler,
+  });
 
   @override
   HtmlRendererState createState() => HtmlRendererState();
 }
 
 /// State of [HtmlRenderer] widget
-class HtmlRendererState extends State<HtmlRenderer>
-    with AutomaticKeepAliveClientMixin<HtmlRenderer> {
+class HtmlRendererState extends State<Html>
+    with AutomaticKeepAliveClientMixin<Html> {
   /// Current HTML tree
   NodeList _htmlTree;
 
@@ -51,10 +52,10 @@ class HtmlRendererState extends State<HtmlRenderer>
   void initState() {
     super.initState();
 
-    assert((widget.initialNodes != null) != (widget.initialHtmlString != null));
+    assert((widget.initialNodes != null) != (widget.data != null));
     _widgetsFactory = WidgetsFactory();
-    if (widget.initialHtmlString != null) {
-      _htmlTree = htmlParser.parse(widget.initialHtmlString).nodes;
+    if (widget.data != null) {
+      _htmlTree = htmlParser.parse(widget.data).nodes;
     } else {
       _htmlTree = widget.initialNodes;
     }

@@ -36,8 +36,8 @@ class MyHomePage extends StatelessWidget {
         body: ListView(
           padding: EdgeInsets.symmetric(horizontal: 8),
           children: [
-            HtmlRenderer(
-              initialHtmlString: htmlDemo,
+            Html(
+              data: htmlDemo,
             ),
           ],
         ));

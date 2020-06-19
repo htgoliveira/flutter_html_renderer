@@ -8,10 +8,10 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
-  html: ^0.14.0
-  flutter_advanced_networkimage: ^0.5.0
-  url_launcher: ^5.1.2
-  youtube_player_flutter: ^4.1.0
+  html: ^0.14.0+3
+  flutter_advanced_networkimage: ^0.7.0
+  url_launcher: ^5.4.5
+  youtube_player_flutter: 7.0.0+3  
   flutter:
     sdk: flutter
 
