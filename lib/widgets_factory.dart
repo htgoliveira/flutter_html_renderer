@@ -129,6 +129,7 @@ class WidgetsFactory {
         ? Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
             children: widgets,
           )
         : widgets.length > 0 ? widgets[0] : Container();

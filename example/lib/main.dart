@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
 //   <p>Duis pretium suscipit euismod. Donec sodales risus ut felis porttitor rhoncus. Cras ullamcorper egestas lacus id euismod. Maecenas aliquet tellus odio, eget vulputate orci consequat quis. Duis interdum, ipsum eget rutrum scelerisque, dolor justo malesuada enim, eget tempus purus magna vitae lorem. Maecenas quis neque a purus tempor scelerisque vel ut libero. Suspendisse posuere nisl ut varius molestie.</p>
 //  ''';
   static const String htmlDemo = '''
-  <p> Msg de Pagamento</p>
+  <h1> Msg de Pagamento</h1>
   </br>
   <p>teste de texto</p>
  ''';

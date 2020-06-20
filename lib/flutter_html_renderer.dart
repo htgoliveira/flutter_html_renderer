@@ -56,11 +56,11 @@ class HtmlRendererState extends State<Html>
 
     assert((widget.initialNodes != null) != (widget.data != null));
     _widgetsFactory = WidgetsFactory();
-    // if (widget.data != null) {
-    //   _htmlTree = htmlParser.parse(widget.data, generateSpans: true).nodes;
-    // } else {
-    //   _htmlTree = widget.initialNodes;
-    // }
+    if (widget.data != null) {
+      _htmlTree = htmlParser.parse(widget.data, generateSpans: true).nodes;
+    } else {
+      _htmlTree = widget.initialNodes;
+    }
     _rendererFuture = _widgetsFactory.nodeListToWidgets(_htmlTree, context,
         linkHandler: widget.linkHandler);
   }
