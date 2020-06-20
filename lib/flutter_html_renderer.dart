@@ -6,6 +6,8 @@ import 'package:flutter_html_renderer/widgets_factory.dart';
 import 'package:html/dom.dart';
 import 'package:html/parser.dart' as htmlParser;
 
+import 'Components/handler/link_handler.dart';
+
 /// Widgets, that renders HTML as an flutter Widgets
 /// Widgets are rendered with [WidgetsFactory]. See documentation of this class
 /// for more information about rendering rules and ways to override default
@@ -54,11 +56,11 @@ class HtmlRendererState extends State<Html>
 
     assert((widget.initialNodes != null) != (widget.data != null));
     _widgetsFactory = WidgetsFactory();
-    if (widget.data != null) {
-      _htmlTree = htmlParser.parse(widget.data).nodes;
-    } else {
-      _htmlTree = widget.initialNodes;
-    }
+    // if (widget.data != null) {
+    //   _htmlTree = htmlParser.parse(widget.data, generateSpans: true).nodes;
+    // } else {
+    //   _htmlTree = widget.initialNodes;
+    // }
     _rendererFuture = _widgetsFactory.nodeListToWidgets(_htmlTree, context,
         linkHandler: widget.linkHandler);
   }
@@ -99,7 +101,7 @@ class HtmlRendererState extends State<Html>
     assert(html?.isNotEmpty ?? false);
 
     setState(() {
-      _htmlTree = htmlParser.parse(html).nodes;
+      _htmlTree = htmlParser.parse(html, generateSpans: false).nodes;
       _rendererFuture = _widgetsFactory.nodeListToWidgets(_htmlTree, context,
           linkHandler: widget.linkHandler);
     });
